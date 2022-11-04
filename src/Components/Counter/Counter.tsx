@@ -13,17 +13,6 @@ const Counter: React.FC<CounterPropsType> = ({counter}) => {
     //стейт для текущего значения
     const [currentValue, setCurrentValue] = useState<number>(counter.minValue)
     // стили для универсальной кнопки
-    const buttonStyle = {
-        display: 'inline-block',
-        maxWidth: ' 80px',
-        height: '20px',
-        backgroundColor: '#61dafb',
-        border: 'none',
-        borderRadius: '5px',
-        color: '#282c34',
-        fontWeight: '600',
-    }
-    const disabledButtonStyle = {...buttonStyle, opacity: 0.5}
     //увеличение на заданный шаг
     const increaseValue = () => {
         const value = currentValue + counter.step;
@@ -45,10 +34,10 @@ const Counter: React.FC<CounterPropsType> = ({counter}) => {
             </div>
             {/*Поле кнопок*/}
             <div className={s.buttonWindow}>
-                <Button style={currentValue === counter.maxValue ? disabledButtonStyle : buttonStyle} name={'inc'}
+                <Button  name={'inc'}
                         callBack={increaseValue}
                         disabled={currentValue === counter.maxValue}/>
-                <Button style={currentValue === counter.minValue ? disabledButtonStyle : buttonStyle} name={'reset'}
+                <Button name={'reset'}
                         callBack={resetValue}
                         disabled={currentValue === counter.minValue}/>
             </div>

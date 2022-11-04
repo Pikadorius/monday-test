@@ -8,7 +8,6 @@ type AppType = {
 }
 
 const App: React.FC<AppType> = ({state}) => {
-
     let chooseCounter = Number(prompt(`It's a lottery! Choose counter from 1 to ${state.counters.length}`));
     console.log(chooseCounter)
 

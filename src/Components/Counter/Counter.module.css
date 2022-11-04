@@ -39,23 +39,3 @@
     justify-content: space-around;
 }
 
-.buttonItem {
-    display: inline-block;
-    max-width: 80px;
-    height: 20px;
-    background-color: #61dafb;
-    border: none;
-    border-radius: 5px;
-    color: #282c34;
-    font-weight: 600;
-}
-
-.buttonWindow button:active {
-    color: #61dafb;
-    background-color: #282c34;
-}
-
-
-.buttonWindow button:disabled {
-    opacity: 0.5;
-}

@@ -21,7 +21,7 @@ const App: React.FC<AppType> = ({state}) => {
     return (
         <div className="App">
             <Counter counter={counter}/>
-            {/*<Counter counter={state.ciunters[1]}/>*/}
+            {/*<Counter counter={state.counters[1]}/>*/}
             {/*<Counter counter={state.counters[2]}/>*/}
         </div>
     );

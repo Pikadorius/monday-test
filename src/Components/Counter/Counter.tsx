@@ -10,9 +10,9 @@ type CounterPropsType = {
 
 const Counter: React.FC<CounterPropsType> = ({counter}) => {
 
-    // стили для универсальной кнопки
+    //стейт для текущего значения
     const [currentValue, setCurrentValue] = useState<number>(counter.minValue)
-
+    // стили для универсальной кнопки
     const buttonStyle = {
         display: 'inline-block',
         maxWidth: ' 80px',
@@ -24,35 +24,26 @@ const Counter: React.FC<CounterPropsType> = ({counter}) => {
         fontWeight: '600',
     }
     const disabledButtonStyle = {...buttonStyle, opacity: 0.5}
-
+    //увеличение на заданный шаг
     const increaseValue = () => {
         const value = currentValue + counter.step;
         value <= counter.maxValue ? setCurrentValue(value) : setCurrentValue(counter.maxValue)
     }
-
+    //сброс на минимальное значение
     const resetValue = () => {
         setCurrentValue(counter.minValue);
     }
 
     return (
+        // Обертка
         <div className={s.wrapper}>
+            {/*Табло с цифрой. В стилях проверется равно ли текущее значение максимальному*/}
             <div className={s.counterWindow}>
-                {/*Табло с цифрой. В стилях проверется равно ли текущее значение максимальному*/}
                 <div
                     className={currentValue === counter.maxValue ? `${s.counterItem} ${s.maxCounterItem}` : s.counterItem}>{currentValue}
                 </div>
             </div>
-
-            {/* {<div className={s.buttonWindow}>
-                <button className={s.buttonItem} onClick={increase}
-                        disabled={currentValue >= maxValue}>inc
-                </button>
-                <button className={s.buttonItem} onClick={reset}
-                        disabled={currentValue === minValue}>reset
-                </button>
-            </div>}*/}
-
-            {/*Поле с универсальными кнопками*/}
+            {/*Поле кнопок*/}
             <div className={s.buttonWindow}>
                 <Button style={currentValue === counter.maxValue ? disabledButtonStyle : buttonStyle} name={'inc'}
                         callBack={increaseValue}

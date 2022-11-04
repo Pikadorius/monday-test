@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import Counter from './Components/Counter/Counter';
 import {StateType} from './index';
@@ -7,28 +7,16 @@ type AppType = {
     state: StateType
 }
 
-function App({state}: AppType) {
+const App: React.FC<AppType> = ({state}) => {
 
-    // const minValue = 0;
-    // const maxValue = 5;
-    // const step = 1;
-    const counter=state.counters[1];
-    const [currentValue, setCurrentValue] = useState<number>(counter.minValue);
-
-
-    const increaseValue = () => {
-        const value = currentValue + counter.step;
-        value <= counter.maxValue ? setCurrentValue(value) : setCurrentValue(counter.maxValue)
-    }
-
-    const resetValue = () => {
-        setCurrentValue(counter.minValue);
-    }
+    const chooseCounter=Number(prompt(`It's a lottery! Choose counter from 1 to ${state.counters.length}`));
+    const counter = state.counters[chooseCounter];
 
     return (
         <div className="App">
-            <Counter minValue={counter.minValue} maxValue={counter.maxValue} currentValue={currentValue} increase={increaseValue}
-                     reset={resetValue}/>
+            <Counter counter={counter}/>
+            {/*<Counter counter={state.ciunters[1]}/>*/}
+            {/*<Counter counter={state.counters[2]}/>*/}
         </div>
     );
 }

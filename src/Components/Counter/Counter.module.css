@@ -1,0 +1,61 @@
+.wrapper {
+    width: 170px;
+    border: 2px solid #61dafb;
+    border-radius: 7px;
+    background-color: #282c34;
+    margin: 20px auto;
+}
+
+.counterWindow {
+    width: 150px;
+    height: 70px;
+    margin: 10px auto;
+    background-color: #61dafb;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+}
+
+.counterItem {
+    align-self: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: #282c34;
+}
+
+.maxCounterItem {
+    color: red;
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.buttonWindow {
+    border: 2px solid #61dafb;
+    border-radius: 6px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.buttonItem {
+    display: inline-block;
+    max-width: 80px;
+    height: 20px;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 5px;
+    color: #282c34;
+    font-weight: 600;
+}
+
+.buttonWindow button:active {
+    color: #61dafb;
+    background-color: #282c34;
+}
+
+
+.buttonWindow button:disabled {
+    opacity: 0.5;
+}

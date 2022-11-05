@@ -5,13 +5,15 @@ import {CounterType} from '../../index';
 
 type CounterPropsType = {
     counter: CounterType
+    reset: number
 }
 
 
-const Counter: React.FC<CounterPropsType> = ({counter}) => {
+const Counter: React.FC<CounterPropsType> = ({counter,reset}) => {
 
     //стейт для текущего значения
     const [currentValue, setCurrentValue] = useState<number>(counter.minValue)
+    console.log(reset)
     // стили для универсальной кнопки
     //увеличение на заданный шаг
     const increaseValue = () => {

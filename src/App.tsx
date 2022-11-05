@@ -1,27 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Counter from './Components/Counter/Counter';
-import {StateType} from './index';
+import {CounterType, StateType} from './index';
+import Button from './Components/Button/Button';
 
 type AppType = {
     state: StateType
 }
 
 const App: React.FC<AppType> = ({state}) => {
-    let chooseCounter = Number(prompt(`It's a lottery! Choose counter from 1 to ${state.counters.length}`));
-    console.log(chooseCounter)
 
-    if (chooseCounter >= state.counters.length) {
-        alert(`I say from 1 to ${state.counters.length}... Are you stupid?`)
-        chooseCounter = 0;
+    const [counter, setCounter]=useState<number>(0)
+
+
+    let count: CounterType = state.counters[counter];
+    const setCount = (i: number) => {
+        console.log(i)
+        setCounter(i)
     }
-    const counter = state.counters[chooseCounter];
+
 
     return (
+
         <div className="App">
-            <Counter counter={counter}/>
-            {/*<Counter counter={state.counters[1]}/>*/}
-            {/*<Counter counter={state.counters[2]}/>*/}
+            <Counter counter={count}/>
+             <h3>Press reset after selecting counter!</h3>
+            {state.counters.map((c, i) => <Button name={`Counter №${i + 1}: \n ${c.minValue} to ${c.maxValue} \n step: ${c.step}`} callBack={() => setCount(i)} disabled={false}/>)}
         </div>
     );
 }

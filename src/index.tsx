@@ -9,7 +9,7 @@ export type CounterType = {
     maxValue: number
     step: number
 }
-//типизация стейта
+//типизация стейта счетчиков
 export type StateType = {
     counters: CounterType[]
 }

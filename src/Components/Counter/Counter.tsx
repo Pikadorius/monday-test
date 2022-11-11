@@ -1,28 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './Counter.module.css'
 import Button from '../Button/Button';
-import {CounterType} from '../../index';
 
 type CounterPropsType = {
-    counter: CounterType
-    reset: number
+    minValue: number
+    maxValue: number
+    currentValue: number;
+    setCurrentValue: (value: number) => void
+    error: string
 }
 
 
-const Counter: React.FC<CounterPropsType> = ({counter,reset}) => {
+const Counter: React.FC<CounterPropsType> = ({minValue, maxValue, currentValue, setCurrentValue, error}) => {
 
-    //стейт для текущего значения
-    const [currentValue, setCurrentValue] = useState<number>(counter.minValue)
-    console.log(reset)
-    // стили для универсальной кнопки
-    //увеличение на заданный шаг
     const increaseValue = () => {
-        const value = currentValue + counter.step;
-        value <= counter.maxValue ? setCurrentValue(value) : setCurrentValue(counter.maxValue)
+        setCurrentValue(currentValue + 1);
     }
-    //сброс на минимальное значение
+
     const resetValue = () => {
-        setCurrentValue(counter.minValue);
+        setCurrentValue(minValue)
     }
 
     return (
@@ -30,21 +26,20 @@ const Counter: React.FC<CounterPropsType> = ({counter,reset}) => {
         <div className={s.wrapper}>
             {/*Табло с цифрой. В стилях проверется равно ли текущее значение максимальному*/}
             <div className={s.counterWindow}>
-                <div
-                    className={currentValue === counter.maxValue ? `${s.counterItem} ${s.maxCounterItem}` : s.counterItem}>{currentValue}
-                </div>
+                <div className={currentValue === maxValue ? `${s.counterItem} ${s.maxCounterItem}` : s.counterItem}>{currentValue}</div>
             </div>
             {/*Поле кнопок*/}
             <div className={s.buttonWindow}>
-                <Button  name={'inc'}
+                <Button name={'inc'}
                         callBack={increaseValue}
-                        disabled={currentValue === counter.maxValue}/>
+                        disabled={currentValue === maxValue}/>
                 <Button name={'reset'}
                         callBack={resetValue}
-                        disabled={currentValue === counter.minValue}/>
+                        disabled={currentValue === minValue}/>
             </div>
         </div>
-    );
-};
+    )
+}
+
 
 export default Counter;

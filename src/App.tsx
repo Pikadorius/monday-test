@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Counter from './Components/Counter/Counter';
-import Settings from './Components/Settings';
+import Settings from './Components/Settings/Settings';
 
 
 const App = () => {
@@ -72,7 +72,10 @@ const App = () => {
     }
     // warning for input in focus
     const FocusHandler = () => {
-        error || setError('enter values and press "set"')
+        // error || setError('enter values and press "set"')
+        if (minTitle!==counterMin || maxTitle!==counterMax) {
+            error || setError('enter values and press "set"')
+        }
     }
 
     return (
@@ -81,7 +84,7 @@ const App = () => {
                      setCurrentValue={setCurrentValue} error={error}/>
             <Settings minTitle={minTitle} maxTitle={maxTitle} setMinTitle={setMinTitleHandler}
                       setMaxTitle={setMaxTitleHandler}
-                      setCounterValues={setCounterValues} onFocus={FocusHandler}/>
+                      setCounterValues={setCounterValues} onFocus={FocusHandler} disabled={minTitle===counterMin && maxTitle===counterMax}/>
         </div>
     );
 }

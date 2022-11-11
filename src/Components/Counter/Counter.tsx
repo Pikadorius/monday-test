@@ -20,22 +20,21 @@ const Counter: React.FC<CounterPropsType> = ({minValue, maxValue, currentValue, 
     const resetValue = () => {
         setCurrentValue(minValue)
     }
-
     return (
         // Обертка
         <div className={s.wrapper}>
             {/*Табло с цифрой. В стилях проверется равно ли текущее значение максимальному*/}
             <div className={s.counterWindow}>
-                <div className={currentValue === maxValue ? `${s.counterItem} ${s.maxCounterItem}` : s.counterItem}>{currentValue}</div>
+                {error || (<div className={currentValue === maxValue ? `${s.counterItem} ${s.maxCounterItem}` : s.counterItem}>{currentValue}</div>)}
             </div>
             {/*Поле кнопок*/}
             <div className={s.buttonWindow}>
                 <Button name={'inc'}
                         callBack={increaseValue}
-                        disabled={currentValue === maxValue}/>
+                        disabled={currentValue === maxValue || error!==''}/>
                 <Button name={'reset'}
                         callBack={resetValue}
-                        disabled={currentValue === minValue}/>
+                        disabled={currentValue === minValue || error!==''}/>
             </div>
         </div>
     )

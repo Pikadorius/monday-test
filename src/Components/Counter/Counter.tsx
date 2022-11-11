@@ -25,6 +25,7 @@ const Counter: React.FC<CounterPropsType> = ({minValue, maxValue, currentValue, 
         <div className={s.wrapper}>
             {/*Табло с цифрой. В стилях проверется равно ли текущее значение максимальному*/}
             <div className={s.counterWindow}>
+                {/*first true condition*/}
                 {error || (<div className={currentValue === maxValue ? `${s.counterItem} ${s.maxCounterItem}` : s.counterItem}>{currentValue}</div>)}
             </div>
             {/*Поле кнопок*/}

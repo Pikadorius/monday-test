@@ -11,9 +11,6 @@ type SettingsType = {
 }
 
 const Settings: React.FC<SettingsType> = ({minTitle, maxTitle, setMinTitle, setMaxTitle, setCounterValues, onFocus}) => {
-    const setCounter = () => {
-        setCounterValues();
-    }
     const setInputMin = (e: ChangeEvent<HTMLInputElement>) => {
         setMinTitle(Number(e.currentTarget.value));
     }
@@ -21,15 +18,11 @@ const Settings: React.FC<SettingsType> = ({minTitle, maxTitle, setMinTitle, setM
         setMaxTitle(Number(e.currentTarget.value));
     }
 
-    const onFocusHandler = () => {
-        onFocus()
-    }
-
     return (
         <div>
-            <input type={'number'} value={minTitle} onChange={setInputMin} onFocus={onFocusHandler}/>
-            <input type={'number'} value={maxTitle} onChange={setInputMax} onFocus={onFocusHandler}/>
-            <Button name={'set'} callBack={setCounter} disabled={minTitle < 0 || maxTitle <= minTitle}/>
+            <input type={'number'} value={minTitle} onChange={setInputMin} onFocus={onFocus}/>
+            <input type={'number'} value={maxTitle} onChange={setInputMax} onFocus={onFocus}/>
+            <Button name={'set'} callBack={setCounterValues} disabled={minTitle < 0 || maxTitle <= minTitle}/>
         </div>
     );
 };

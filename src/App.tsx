@@ -19,7 +19,7 @@ const App = () => {
     const [error, setError] = useState<string>('')
 
 
-    // foo that checks conditions and sets counter values
+    // foo that checks conditions and sets counter values and error if conditions true
     const setCounterValues = () => {
         if (minTitle >= 0 && maxTitle !== minTitle) {
             setCounterMax(maxTitle)
@@ -57,7 +57,7 @@ const App = () => {
         localStorage.setItem('error', JSON.stringify(error))
     }, [counterMax, counterMin,error, currentValue, minTitle, maxTitle])
 
-    // warning in counter window if changed inputs
+    // warning for min input
     const setMinTitleHandler = (value: number) => {
         if (value<0 || value>=maxTitle) {
             setError('Incorrect value!')
@@ -65,12 +65,12 @@ const App = () => {
         else setError('enter values and press "set"')
         setMinTitle(value)
     }
-
+    // warning for max input
     const setMaxTitleHandler = (value: number) => {
         value>minTitle? setError('enter values and press "set"') : setError('Incorrect value!')
         setMaxTitle(value)
     }
-
+    // warning for input in focus
     const FocusHandler = () => {
         error || setError('enter values and press "set"')
     }

@@ -55,20 +55,20 @@ const App = () => {
         localStorage.setItem('minTitle', JSON.stringify(minTitle))
         localStorage.setItem('maxTitle', JSON.stringify(maxTitle))
         localStorage.setItem('error', JSON.stringify(error))
-    }, [counterMax, counterMin,error, currentValue, minTitle, maxTitle])
+    }, [counterMax, counterMin, error, currentValue, minTitle, maxTitle])
 
     // warning for min input
     const setMinTitleHandler = (value: number) => {
-        if (value<0 || value>=maxTitle) {
-            setError('Incorrect value!')
-        }
+        if (value < 0 || value >= maxTitle) setError('Incorrect value!')
         else setError('enter values and press "set"')
         setMinTitle(value)
     }
     // warning for max input
     const setMaxTitleHandler = (value: number) => {
-        value>minTitle? setError('enter values and press "set"') : setError('Incorrect value!')
+        if (value <= minTitle || minTitle < 0) setError('Incorrect value!')
+        else setError('enter values and press "set"')
         setMaxTitle(value)
+
     }
     // warning for input in focus
     const FocusHandler = () => {
@@ -79,7 +79,8 @@ const App = () => {
         <div className="App">
             <Counter minValue={counterMin} maxValue={counterMax} currentValue={currentValue}
                      setCurrentValue={setCurrentValue} error={error}/>
-            <Settings minTitle={minTitle} maxTitle={maxTitle} setMinTitle={setMinTitleHandler} setMaxTitle={setMaxTitleHandler}
+            <Settings minTitle={minTitle} maxTitle={maxTitle} setMinTitle={setMinTitleHandler}
+                      setMaxTitle={setMaxTitleHandler}
                       setCounterValues={setCounterValues} onFocus={FocusHandler}/>
         </div>
     );
